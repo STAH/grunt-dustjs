@@ -51,7 +51,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
-*   __25/09/2012 - 0.1.1__: Initial release.
+*   __25/09/2012 - 0.1.2__: Initial release.
 
 License
 =======
