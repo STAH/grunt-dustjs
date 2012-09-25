@@ -11,12 +11,57 @@
 module.exports = function (grunt) {
   "use strict";
 
+  // Temporary helper for normalizing files object
+  var normalizeMultiTaskFiles = function(data, target) {
+    var prop, obj;
+    var files = [];
+    if (grunt.util.kindOf(data) === 'object') {
+      if ('src' in data || 'dest' in data) {
+        obj = {};
+        if ('src' in data) { obj.src = data.src; }
+        if ('dest' in data) { obj.dest = data.dest; }
+        files.push(obj);
+      } else if (grunt.util.kindOf(data.files) === 'object') {
+        for (prop in data.files) {
+          files.push({src: data.files[prop], dest: prop});
+        }
+      } else if (Array.isArray(data.files)) {
+        data.files.forEach(function(obj) {
+          var prop;
+          if ('src' in obj || 'dest' in obj) {
+            files.push(obj);
+          } else {
+            for (prop in obj) {
+              files.push({src: obj[prop], dest: prop});
+            }
+          }
+        });
+      }
+    } else {
+      files.push({src: data, dest: target});
+    }
+
+    // Process each normalized file object as a template.
+    files.forEach(function(obj) {
+      // Process src as a template (recursively, if necessary).
+      if ('src' in obj) {
+        obj.src = grunt.util.recurse(obj.src, function(src) {
+          if (typeof src !== 'string') { return src; }
+          return grunt.template.process(src);
+        });
+      }
+      if ('dest' in obj) {
+        // Process dest as a template.
+        obj.dest = grunt.template.process(obj.dest);
+      }
+    });
+
+    return files;
+  };
+
   grunt.registerMultiTask("dustjs", "Grunt task to compile Dust.js templates.", function () {
 
-    if (!this.files) {
-      grunt.warn('Missing files property.');
-      return false;
-    }
+    this.files = this.files || normalizeMultiTaskFiles(this.data, this.target);
 
     var options = this.data.options || {};
 
@@ -26,7 +71,7 @@ module.exports = function (grunt) {
 
       srcFiles.forEach(function (srcFile) {
         var sourceCode = grunt.file.read(srcFile);
-        var sourceCompiled = grunt.helper("dust", sourceCode, srcFile, options.fullname);
+        var sourceCompiled = grunt.helper("dustjs", sourceCode, srcFile, options.fullname);
 
         taskOutput.push(sourceCompiled);
       });
