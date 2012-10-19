@@ -21,7 +21,7 @@ grunt.loadNpmTasks('grunt-dustjs');
 Documentation
 =============
 
-Inside your `grunt.js` file, add a section named `gruntjs`. This section specifies the Dust.js template files to compile.
+Inside your `grunt.js` file, add a section named `dustjs`. This section specifies the Dust.js template files to compile.
 
 ##### files ```object```
 
