@@ -89,16 +89,21 @@ module.exports = function (grunt) {
 
     try {
       var name;
-      if (fullFilename) {
+     if (typeof fullFilename === "function") {
+        name = fullFilename(filepath);
+      } else if (fullFilename) {
         name = filepath;
       } else {
         // Sets the name of the template as the filename without the extension
         // Example: "fixtures/dust/one.dust" > "one"
         name = path.basename(filepath, path.extname(filepath));
       }
-
-      var output = dust.compile(source, name);
-      return output; 
+      
+      if (name !== undefined) {
+        var output = dust.compile(source, name);
+        return output;
+      }
+      return '';
     } catch (e) {
       grunt.log.error(e);
       grunt.fail.warn("Dust.js failed to compile.");
