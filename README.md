@@ -29,7 +29,9 @@ This defines what files this task will process and should contain key:value pair
 
 The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
 
-### Example
+Also, you can use `fullname` option to customize template variable name.
+
+### Example #1
 
 ```javascript
 // project configuration
@@ -44,6 +46,29 @@ grunt.initConfig({
 });
 ```
 
+### Example #2 (custom template names)
+
+```javascript
+// project configuration
+grunt.initConfig({
+  dustjs: {
+    compile: {
+      files: {
+        "js/templates.js": ["src/templates/**/*.html"]
+      },
+      options: {
+        fullname: function(filepath) {
+          return path.relative('templates/all', path.dirname(filepath)).split(path.sep) // folder names
+            .concat([path.basename(filepath, path.extname(filepath))]) // template name
+            .join('.');
+        }
+      }
+    }
+  },
+});
+```
+
+
 Contributing
 ============
 
@@ -51,6 +76,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __08/12/2012 - 0.2__: Add namespace support.
 *   __25/09/2012 - 0.1.2__: Initial release.
 
 License
