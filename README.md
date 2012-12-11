@@ -76,7 +76,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
-*   __08/12/2012 - 0.2__: Add namespace support.
+*   __08/12/2012 - 0.2.0__: Add namespace support.
 *   __25/09/2012 - 0.1.2__: Initial release.
 
 License
