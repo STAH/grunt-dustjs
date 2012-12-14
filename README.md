@@ -76,7 +76,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
-*   __08/12/2012 - 0.2.0__: Add namespace support.
+*   __14/12/2012 - 0.2.1__: Grunt v0.4 compatibility (@SpeCT).
+*   __08/12/2012 - 0.2.0__: Add namespace support (@bernharduw).
 *   __25/09/2012 - 0.1.2__: Initial release.
 
 License
