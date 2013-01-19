@@ -68,7 +68,7 @@ module.exports = function (grunt) {
     var options = this.data.options || {};
 
     this.files.forEach(function (file) {
-      var srcFiles = file.src;
+      var srcFiles = grunt.file.expand({filter: 'isFile'}, file.src);
       var taskOutput = [];
 
       srcFiles.forEach(function (srcFile) {
