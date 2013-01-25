@@ -2,7 +2,7 @@
  * grunt-dustjs
  * https://github.com/STAH/grunt-dustjs
  *
- * Copyright (c) 2012 Stanislav Lesnikov
+ * Copyright (c) 2013 Stanislav Lesnikov
  * Licensed under the MIT license.
  * https://github.com/STAH/grunt-dustjs/blob/master/LICENSE-MIT
  */

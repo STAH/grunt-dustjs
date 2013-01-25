@@ -76,6 +76,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __19/01/2013 - 0.2.2__: Grunt v0.4rc5 compatibility (@toddself).
 *   __14/12/2012 - 0.2.1__: Grunt v0.4 compatibility (@SpeCT).
 *   __08/12/2012 - 0.2.0__: Add namespace support (@bernharduw).
 *   __25/09/2012 - 0.1.2__: Initial release.
@@ -83,5 +84,5 @@ Release History
 License
 =======
 
-Copyright (c) 2012 Stanislav Lesnikov
+Copyright (c) 2013 Stanislav Lesnikov
 Licensed under the MIT license.
