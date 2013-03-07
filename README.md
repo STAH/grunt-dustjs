@@ -14,22 +14,23 @@ Then add this line to your project's `grunt.js` gruntfile:
 grunt.loadNpmTasks('grunt-dustjs');
 ```
 
-[npm_registry_page]: http://search.npmjs.org/#/grunt-dustjs
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
+[grunt]: http://gruntjs.com
 
 Documentation
 =============
 
-Inside your `grunt.js` file, add a section named `dustjs`. This section specifies the Dust.js template files to compile.
+Inside your `grunt.js` file, add a section named `dustjs` with one or more targets. Each section contains a files object that specifies the Dust.js template files to compile.
 
-##### files ```object```
+##### `files` object
 
-This defines what files this task will process and should contain key:value pairs.
+This defines what files this task will process. It can contain any valid Grunt files format.
 
-The key (destination) should be an unique filepath (supports [grunt.template](https://github.com/cowboy/grunt/blob/master/docs/api_template.md)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)).
+When using a src/dest format, the key (destination) should be an unique filepath (supports [grunt.template](https://github.com/gruntjs/grunt/wiki/grunt.template)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)). All source files will be combined into the destination output.
 
-Also, you can use `fullname` option to customize template variable name.
+When using the dynamic format (example #3), each source file will be processed into its own destination file.
+
+Also, you can use `fullname` option to customize the template variable names. If `fullname` is `true`, the full path will be used as the template name. If `fullname` is a function, the function receives a single argument, which is the full path, and returns the name of the template.
 
 ### Example #1
 
@@ -65,6 +66,28 @@ grunt.initConfig({
       }
     }
   },
+});
+```
+
+
+### Example #3 (one JS file per template)
+
+```javascript
+// project configuration
+grunt.initConfig({
+  dustjs: {
+    compile: {
+      files: [
+        {
+          expand: true,
+          cwd: "dust/",
+          src: "**/*.html",
+          dest: "",
+          ext: ".js"
+        }
+      ]
+    }
+  }
 });
 ```
 
