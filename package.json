@@ -1,7 +1,7 @@
 {
   "name": "grunt-dustjs",
   "description": "Grunt task to compile Dust.js templates.",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/STAH/grunt-dustjs",
   "author": {
     "name": "Stanislav Lesnikov",
@@ -32,13 +32,11 @@
   },
   "dependencies": {
     "grunt": "~0.4.0",
-    "dustjs-linkedin": ">= 1.0.0"
+    "dustjs-linkedin": ">= 2.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "grunt-coffee": ">= 0.0.5",
-    "grunt-docco": ">= 0.1.1",
-    "grunt-contrib-jshint": "~0.1.1rc6"
+    "grunt-contrib-jshint": "~0.6.0"
   },
   "keywords": [
     "dustjs",

@@ -11,7 +11,7 @@ Install this grunt plugin next to your project's [grunt.js gruntfile][getting_st
 Then add this line to your project's `grunt.js` gruntfile:
 
 ```javascript
-grunt.loadNpmTasks('grunt-dustjs');
+grunt.loadNpmTasks("grunt-dustjs");
 ```
 
 [getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
@@ -35,9 +35,18 @@ Also, you can use `fullname` option to customize the template variable names. If
 ### Example #1
 
 ```javascript
-// project configuration
-grunt.initConfig({
-  dustjs: {
+module.exports = function (grunt) {
+  //...
+  grunt.loadNpmTasks("grunt-dustjs");
+  //...
+
+  var config = {
+    //...
+    dustjs: {},
+    //...
+  };
+
+  config.dustjs: {
     compile: {
       files: {
         "js/templates.js": ["src/templates/**/*.html"]
@@ -50,18 +59,33 @@ grunt.initConfig({
 ### Example #2 (custom template names)
 
 ```javascript
-// project configuration
-grunt.initConfig({
-  dustjs: {
+var path = require("path");
+
+module.exports = function (grunt) {
+  //...
+  grunt.loadNpmTasks("grunt-dustjs");
+  //...
+
+  var config = {
+    //...
+    dustjs: {},
+    //...
+  };
+
+  config.dustjs: {
     compile: {
       files: {
         "js/templates.js": ["src/templates/**/*.html"]
       },
       options: {
         fullname: function(filepath) {
-          return path.relative('templates/all', path.dirname(filepath)).split(path.sep) // folder names
+          var key = path.relative("src/templates", path.dirname(filepath)).split(path.sep) // folder names
             .concat([path.basename(filepath, path.extname(filepath))]) // template name
-            .join('.');
+            .join(".");
+
+          if (key.charAt(0) == ".")
+            return key.substr(1, key.length - 1);
+          return key;
         }
       }
     }
@@ -73,9 +97,18 @@ grunt.initConfig({
 ### Example #3 (one JS file per template)
 
 ```javascript
-// project configuration
-grunt.initConfig({
-  dustjs: {
+module.exports = function (grunt) {
+  //...
+  grunt.loadNpmTasks("grunt-dustjs");
+  //...
+
+  var config = {
+    //...
+    dustjs: {},
+    //...
+  };
+
+  config.dustjs: {
     compile: {
       files: [
         {
@@ -99,6 +132,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __18/07/2013 - 1.0.0__: Release.
 *   __19/01/2013 - 0.2.2__: Grunt v0.4rc5 compatibility (@toddself).
 *   __14/12/2012 - 0.2.1__: Grunt v0.4 compatibility (@SpeCT).
 *   __08/12/2012 - 0.2.0__: Add namespace support (@bernharduw).
