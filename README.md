@@ -37,8 +37,6 @@ Used to customize the template variable names. If `fullname` is `true`, the full
 ##### `transformQuote` _default_: `false`
 Used to reverse quotes usage by dustjs: double quotes replaced by single quotes and vice versa. Output is more clean after this transformation.
 
-Another option is available: 
-
 ### Example #1
 
 ```javascript
@@ -139,6 +137,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __23/07/2013 - 1.1.0__: Introduce transformQuote option.
 *   __23/07/2013 - 1.0.1__: Correct expand function.
 *   __18/07/2013 - 1.0.0__: Release.
 *   __18/07/2013 - 0.2.4__: Update examples.
