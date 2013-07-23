@@ -23,14 +23,21 @@ Documentation
 Inside your `grunt.js` file, add a section named `dustjs` with one or more targets. Each section contains a files object that specifies the Dust.js template files to compile.
 
 ##### `files` object
-
 This defines what files this task will process. It can contain any valid Grunt files format.
 
 When using a src/dest format, the key (destination) should be an unique filepath (supports [grunt.template](https://github.com/gruntjs/grunt/wiki/grunt.template)) and the value (source) should be a filepath or an array of filepaths (supports [minimatch](https://github.com/isaacs/minimatch)). All source files will be combined into the destination output.
 
 When using the dynamic format (example #3), each source file will be processed into its own destination file.
 
-Also, you can use `fullname` option to customize the template variable names. If `fullname` is `true`, the full path will be used as the template name. If `fullname` is a function, the function receives a single argument, which is the full path, and returns the name of the template.
+### Options
+
+##### `fullname` _default_: `false`
+Used to customize the template variable names. If `fullname` is `true`, the full path will be used as the template name. If `fullname` is a function, the function receives a single argument, which is the full path, and returns the name of the template.
+
+##### `transformQuote` _default_: `false`
+Used to reverse quotes usage by dustjs: double quotes replaced by single quotes and vice versa. Output is more clean after this transformation.
+
+Another option is available: 
 
 ### Example #1
 
