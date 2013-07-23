@@ -132,7 +132,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __23/07/2013 - 1.0.1__: Correct expand function.
 *   __18/07/2013 - 1.0.0__: Release.
+*   __18/07/2013 - 0.2.4__: Update examples.
 *   __19/01/2013 - 0.2.2__: Grunt v0.4rc5 compatibility (@toddself).
 *   __14/12/2012 - 0.2.1__: Grunt v0.4 compatibility (@SpeCT).
 *   __08/12/2012 - 0.2.0__: Add namespace support (@bernharduw).
