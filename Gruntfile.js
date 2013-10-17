@@ -12,9 +12,7 @@ module.exports = function(grunt) {
           sub: true,
           undef: true,
           boss: true,
-          eqnull: true,
-          node: true,
-          es5: true
+          eqnull: true
       },
       globals: {},
       files: ['Gruntfile.js', 'tasks/**/*.js']
