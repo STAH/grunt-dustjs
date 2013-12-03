@@ -63,7 +63,7 @@ module.exports = function (grunt) {
         return dust.compile(source, name);
       } catch (e) {
         grunt.log.error(e);
-        grunt.fail.warn("Dust.js failed to compile.");
+        grunt.fail.warn("Dust.js failed to compile template \"" + name + "\".");
       }
     }
 
