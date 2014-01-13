@@ -13,12 +13,12 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask("dustjs", "Grunt task to compile Dust.js templates.", function () {
     // Extend with the default options if none are specified
-      var options = this.options({
-          fullname: false,
-          transformQuote: false,
-          prepend : '',
-          append : ''
-      });
+    var options = this.options({
+      fullname: false,
+      transformQuote: false,
+      prepend : '',
+      append : ''
+    });
 
     this.files.forEach(function (file) {
       var srcFiles = grunt.file.expand(file.src),
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
         return dust.compile(source, name);
       } catch (e) {
         grunt.log.error(e);
-        grunt.fail.warn("Dust.js failed to compile template \"" + name + "\".");
+        grunt.fail.warn('Dust.js failed to compile template "' + name + '".');
       }
     }
 
