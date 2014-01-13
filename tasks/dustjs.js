@@ -13,10 +13,12 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask("dustjs", "Grunt task to compile Dust.js templates.", function () {
     // Extend with the default options if none are specified
-    var options = this.options({
-        fullname: false,
-        transformQuote: false
-    });
+      var options = this.options({
+          fullname: false,
+          transformQuote: false,
+          prepend : '',
+          append : ''
+      });
 
     this.files.forEach(function (file) {
       var srcFiles = grunt.file.expand(file.src),
@@ -36,7 +38,8 @@ module.exports = function (grunt) {
       });
 
       if (taskOutput.length > 0) {
-        grunt.file.write(file.dest, taskOutput.join("\n"));
+        var wrappedSourceCompiled = options.prepend + taskOutput.join("\n") + options.append;
+        grunt.file.write(file.dest, wrappedSourceCompiled);
         grunt.verbose.writeln("[dustjs] Compiled " + grunt.log.wordlist(srcFiles.toString().split(","), {color: false}) + " => " + file.dest);
         grunt.verbose.or.writeln("[dustjs] Compiled " + file.dest);
       }
