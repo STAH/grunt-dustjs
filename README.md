@@ -137,6 +137,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __07/02/2014 - 1.2.1__: Update jshint
 *   __14/01/2014 - 1.2.0__: Add append/prepend wrapper strings (@kreegr), error handling (@sunflowerdeath)
 *   __23/07/2013 - 1.1.0__: Introduce transformQuote option.
 *   __23/07/2013 - 1.0.1__: Correct expand function.

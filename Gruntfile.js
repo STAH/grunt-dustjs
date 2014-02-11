@@ -2,20 +2,20 @@ module.exports = function(grunt) {
   "use strict";
   grunt.initConfig({
     jshint: {
-          options: {
-          curly: true,
-          eqeqeq: true,
-          immed: true,
-          latedef: true,
-          newcap: true,
-          noarg: true,
-          sub: true,
-          undef: true,
-          boss: true,
-          eqnull: true
+      options: {
+        curly: true,
+        eqeqeq: true,
+        immed: true,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        sub: true,
+        undef: true,
+        boss: true,
+        eqnull: true,
+        node: true
       },
-      globals: {},
-      files: ['Gruntfile.js', 'tasks/**/*.js']
+      all: ['Gruntfile.js', 'tasks/**/*.js']
     }
   });
 
