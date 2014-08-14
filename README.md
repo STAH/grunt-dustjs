@@ -37,6 +37,12 @@ Used to customize the template variable names. If `fullname` is `true`, the full
 ##### `transformQuote` _default_: `false`
 Used to reverse quotes usage by dustjs: double quotes replaced by single quotes and vice versa. Output is more clean after this transformation.
 
+##### `prepend` _default_: `null`
+Add a custom string to the start of the output file. This is useful for creating custom AMD wrappers, eg: `define(['dust'], function(dust){\n`
+
+##### `append` _default_: `null`
+Add a custom string to the end of the output file. 
+
 ### Example #1
 
 ```javascript
