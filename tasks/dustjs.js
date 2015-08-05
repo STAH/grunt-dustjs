@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 
       srcFiles.forEach(function (srcFile) {
         var sourceCode = grunt.file.read(srcFile);
-        var sourceCompiled = compile(sourceCode, srcFile, options.fullname);
+        var sourceCompiled = compile(sourceCode, srcFile, options);
 
         if (options.transformQuote) {
             sourceCompiled = sourceCompiled.replace('chk.write("', "chk.write('");
@@ -46,9 +46,10 @@ module.exports = function (grunt) {
     });
   });
 
-  function compile (source, filepath, fullFilename) {
+  function compile (source, filepath, options) {
     var path = require("path"),
         dust = require("dustjs-linkedin"),
+        fullFilename = options.fullname,
         name;
 
     if (typeof fullFilename === "function") {
@@ -62,12 +63,15 @@ module.exports = function (grunt) {
     }
 
     if (name !== undefined) {
+      var old = dust.config
       try {
+        dust.config = options;
         return dust.compile(source, name);
       } catch (e) {
         grunt.log.error(e);
         grunt.fail.warn('Dust.js failed to compile template "' + name + '".');
       }
+      dust.config = old;
     }
 
     return '';
