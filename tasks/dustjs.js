@@ -19,7 +19,8 @@ module.exports = function (grunt) {
       append : '',
       whitespace: false,
       amd: false,
-      cjs: false
+      cjs: false,
+      silent: false
     });
 
     this.files.forEach(function (file) {
@@ -42,8 +43,10 @@ module.exports = function (grunt) {
       if (taskOutput.length > 0) {
         var wrappedSourceCompiled = options.prepend + taskOutput.join("\n") + options.append;
         grunt.file.write(file.dest, wrappedSourceCompiled);
-        grunt.verbose.writeln("[dustjs] Compiled " + grunt.log.wordlist(srcFiles.toString().split(","), {color: false}) + " => " + file.dest);
-        grunt.verbose.or.writeln("[dustjs] Compiled " + file.dest);
+        if (!options.silent) {
+          grunt.verbose.writeln("[dustjs] Compiled " + grunt.log.wordlist(srcFiles.toString().split(","), {color: false}) + " => " + file.dest);
+          grunt.verbose.or.writeln("[dustjs] Compiled " + file.dest);
+        }
       }
     });
   });

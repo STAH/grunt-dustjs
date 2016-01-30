@@ -1,7 +1,7 @@
 {
   "name": "grunt-dustjs",
   "description": "Grunt task to compile Dust.js templates.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "homepage": "https://github.com/STAH/grunt-dustjs",
   "author": {
     "name": "Stanislav Lesnikov",
