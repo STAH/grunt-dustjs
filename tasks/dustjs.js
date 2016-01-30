@@ -2,11 +2,10 @@
  * grunt-dustjs
  * https://github.com/STAH/grunt-dustjs
  *
- * Copyright (c) 2013-2014 Stanislav Lesnikov
+ * Copyright (c) 2013-2016 Stanislav Lesnikov
  * Licensed under the MIT license.
  * https://github.com/STAH/grunt-dustjs/blob/master/LICENSE-MIT
  */
-
 
 module.exports = function (grunt) {
   "use strict";
@@ -17,7 +16,10 @@ module.exports = function (grunt) {
       fullname: false,
       transformQuote: false,
       prepend : '',
-      append : ''
+      append : '',
+      whitespace: false,
+      amd: false,
+      cjs: false
     });
 
     this.files.forEach(function (file) {

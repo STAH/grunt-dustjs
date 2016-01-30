@@ -41,7 +41,16 @@ Used to reverse quotes usage by dustjs: double quotes replaced by single quotes 
 Add a custom string to the start of the output file. This is useful for creating custom AMD wrappers, eg: `define(['dust'], function(dust){\n`
 
 ##### `append` _default_: `null`
-Add a custom string to the end of the output file. 
+Add a custom string to the end of the output file.
+
+##### `whitespace` _default_: `false`
+Preserve whitespace.
+
+##### `amd` _default_: `false`
+Compile as AMD modules.
+
+##### `cjs` _default_: `false`
+Compile as CommonJS modules.
 
 ### Example #1
 
@@ -143,6 +152,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __30/01/2016 - 1.2.2__: Support 2.7.x options
 *   __07/02/2014 - 1.2.1__: Update jshint
 *   __14/01/2014 - 1.2.0__: Add append/prepend wrapper strings (@kreegr), error handling (@sunflowerdeath)
 *   __23/07/2013 - 1.1.0__: Introduce transformQuote option.
@@ -157,5 +167,5 @@ Release History
 License
 =======
 
-Copyright (c) 2013-2014 Stanislav Lesnikov
+Copyright (c) 2013-2016 Stanislav Lesnikov
 Licensed under the MIT license.
