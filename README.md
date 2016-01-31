@@ -11,7 +11,7 @@ Install this grunt plugin next to your project's [grunt.js gruntfile][getting_st
 Then add this line to your project's `grunt.js` gruntfile:
 
 ```javascript
-grunt.loadNpmTasks("grunt-dustjs");
+grunt.loadNpmTasks('grunt-dustjs');
 ```
 
 [getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
@@ -60,7 +60,7 @@ Suppress success compile messages.
 ```javascript
 module.exports = function (grunt) {
   //...
-  grunt.loadNpmTasks("grunt-dustjs");
+  grunt.loadNpmTasks('grunt-dustjs');
   //...
 
   var config = {
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
   config.dustjs: {
     compile: {
       files: {
-        "js/templates.js": ["src/templates/**/*.html"]
+        'js/templates.js': ['src/templates/**/*.html']
       }
     }
   },
@@ -82,11 +82,11 @@ module.exports = function (grunt) {
 ### Example #2 (custom template names)
 
 ```javascript
-var path = require("path");
+var path = require('path');
 
 module.exports = function (grunt) {
   //...
-  grunt.loadNpmTasks("grunt-dustjs");
+  grunt.loadNpmTasks('grunt-dustjs');
   //...
 
   var config = {
@@ -98,15 +98,15 @@ module.exports = function (grunt) {
   config.dustjs: {
     compile: {
       files: {
-        "js/templates.js": ["src/templates/**/*.html"]
+        'js/templates.js': ['src/templates/**/*.html']
       },
       options: {
         fullname: function(filepath) {
-          var key = path.relative("src/templates", path.dirname(filepath)).split(path.sep) // folder names
+          var key = path.relative('src/templates', path.dirname(filepath)).split(path.sep) // folder names
             .concat([path.basename(filepath, path.extname(filepath))]) // template name
-            .join(".");
+            .join('.');
 
-          if (key.charAt(0) == ".")
+          if (key.charAt(0) == '.')
             return key.substr(1, key.length - 1);
           return key;
         }
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
 ```javascript
 module.exports = function (grunt) {
   //...
-  grunt.loadNpmTasks("grunt-dustjs");
+  grunt.loadNpmTasks('grunt-dustjs');
   //...
 
   var config = {
@@ -136,10 +136,10 @@ module.exports = function (grunt) {
       files: [
         {
           expand: true,
-          cwd: "dust/",
-          src: "**/*.html",
-          dest: "",
-          ext: ".js"
+          cwd: 'dust/',
+          src: '**/*.html',
+          dest: '',
+          ext: '.js'
         }
       ]
     }
@@ -155,6 +155,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
+*   __30/01/2016 - 1.2.4__: Format code
 *   __30/01/2016 - 1.2.3__: Add silent option
 *   __30/01/2016 - 1.2.2__: Support 2.7.x options
 *   __07/02/2014 - 1.2.1__: Update jshint

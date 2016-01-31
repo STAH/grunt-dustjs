@@ -1,27 +1,14 @@
-module.exports = function(grunt) {
-  "use strict";
+module.exports = function task(grunt) {
+  'use strict';
   grunt.initConfig({
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        node: true
-      },
-      all: ['Gruntfile.js', 'tasks/**/*.js']
+    eslint: {
+      target: ['Gruntfile.js', 'tasks/**/*.js']
     }
   });
 
   // Load local tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
 
   // Default task.
-  grunt.registerTask('default', 'jshint');
+  grunt.registerTask('default', 'eslint');
 };

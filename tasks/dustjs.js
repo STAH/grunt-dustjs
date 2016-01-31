@@ -7,57 +7,17 @@
  * https://github.com/STAH/grunt-dustjs/blob/master/LICENSE-MIT
  */
 
-module.exports = function (grunt) {
-  "use strict";
+module.exports = function main(grunt) {
+  'use strict';
 
-  grunt.registerMultiTask("dustjs", "Grunt task to compile Dust.js templates.", function () {
-    // Extend with the default options if none are specified
-    var options = this.options({
-      fullname: false,
-      transformQuote: false,
-      prepend : '',
-      append : '',
-      whitespace: false,
-      amd: false,
-      cjs: false,
-      silent: false
-    });
+  function compile(source, filepath, options) {
+    var path = require('path');
+    var dust = require('dustjs-linkedin');
+    var saveConfig = dust.config;
+    var fullFilename = options.fullname;
+    var name;
 
-    this.files.forEach(function (file) {
-      var srcFiles = grunt.file.expand(file.src),
-          taskOutput = [];
-
-      srcFiles.forEach(function (srcFile) {
-        var sourceCode = grunt.file.read(srcFile);
-        var sourceCompiled = compile(sourceCode, srcFile, options);
-
-        if (options.transformQuote) {
-            sourceCompiled = sourceCompiled.replace('chk.write("', "chk.write('");
-            sourceCompiled = sourceCompiled.replace('");', "');");
-            sourceCompiled = sourceCompiled.replace(/\\"/g,'"');
-        }
-
-        taskOutput.push(sourceCompiled);
-      });
-
-      if (taskOutput.length > 0) {
-        var wrappedSourceCompiled = options.prepend + taskOutput.join("\n") + options.append;
-        grunt.file.write(file.dest, wrappedSourceCompiled);
-        if (!options.silent) {
-          grunt.verbose.writeln("[dustjs] Compiled " + grunt.log.wordlist(srcFiles.toString().split(","), {color: false}) + " => " + file.dest);
-          grunt.verbose.or.writeln("[dustjs] Compiled " + file.dest);
-        }
-      }
-    });
-  });
-
-  function compile (source, filepath, options) {
-    var path = require("path"),
-        dust = require("dustjs-linkedin"),
-        fullFilename = options.fullname,
-        name;
-
-    if (typeof fullFilename === "function") {
+    if (typeof fullFilename === 'function') {
       name = fullFilename(filepath);
     } else if (fullFilename) {
       name = filepath;
@@ -68,7 +28,6 @@ module.exports = function (grunt) {
     }
 
     if (name !== undefined) {
-      var old = dust.config
       try {
         dust.config = options;
         return dust.compile(source, name);
@@ -76,9 +35,52 @@ module.exports = function (grunt) {
         grunt.log.error(e);
         grunt.fail.warn('Dust.js failed to compile template "' + name + '".');
       }
-      dust.config = old;
+      dust.config = saveConfig;
     }
 
     return '';
   }
+
+  grunt.registerMultiTask('dustjs', 'Grunt task to compile Dust.js templates.', function task() {
+    // Extend with the default options if none are specified
+    var options = this.options({
+      fullname: false,
+      transformQuote: false,
+      prepend: '',
+      append: '',
+      whitespace: false,
+      amd: false,
+      cjs: false,
+      silent: false
+    });
+
+    this.files.forEach(function doFiles(file) {
+      var srcFiles = grunt.file.expand(file.src);
+      var taskOutput = [];
+
+      srcFiles.forEach(function doSources(srcFile) {
+        var sourceCode = grunt.file.read(srcFile);
+        var sourceCompiled = compile(sourceCode, srcFile, options);
+
+        if (options.transformQuote) {
+          sourceCompiled = sourceCompiled.replace('chk.write("', "chk.write('");
+          sourceCompiled = sourceCompiled.replace('");', "');");
+          sourceCompiled = sourceCompiled.replace(/\\"/g, '"');
+        }
+
+        taskOutput.push(sourceCompiled);
+      });
+
+      if (taskOutput.length > 0) {
+        grunt.file.write(file.dest,
+          options.prepend + taskOutput.join('\n') + options.append);
+
+        if (!options.silent) {
+          grunt.verbose.writeln('[dustjs] Compiled ' +
+            grunt.log.wordlist(srcFiles.toString().split(','), { color: false }) + ' => ' + file.dest);
+          grunt.verbose.or.writeln('[dustjs] Compiled ' + file.dest);
+        }
+      }
+    });
+  });
 };

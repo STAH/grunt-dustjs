@@ -1,0 +1,8 @@
+{
+  "extends": "airbnb/legacy",
+  "rules": {
+    "comma-dangle": [2, "never"],
+    "space-before-function-paren": [2, "never"],
+    "max-len": [2, 120, 4]
+  }
+}
