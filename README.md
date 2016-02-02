@@ -155,9 +155,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Release History
 ===============
-*   __30/01/2016 - 1.2.4__: Format code
-*   __30/01/2016 - 1.2.3__: Add silent option
-*   __30/01/2016 - 1.2.2__: Support 2.7.x options
+*   __30/01/2016 - 1.3.0__: Support 2.7.x options, silent option
 *   __07/02/2014 - 1.2.1__: Update jshint
 *   __14/01/2014 - 1.2.0__: Add append/prepend wrapper strings (@kreegr), error handling (@sunflowerdeath)
 *   __23/07/2013 - 1.1.0__: Introduce transformQuote option.
