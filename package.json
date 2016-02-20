@@ -29,7 +29,7 @@
     "dustjs-linkedin": ">= 2.7.0"
   },
   "peerDependencies": {
-    "grunt": "0.4.x"
+    "grunt": ">=0.4.0"
   },
   "devDependencies": {
     "eslint": "^1.10.3",
